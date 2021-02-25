@@ -1,12 +1,65 @@
-import logo from './logo.svg';
+import React, { useRef, useState } from 'react';
 import './App.css';
 
+import HabitList from './components/HabitList.js';
+import SignIn from './components/SignIn.js';
+import SignOut from './components/SignOut.js';
+
+
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+//initializes the registered app from firebase with the given config
+firebase.initializeApp({
+  apiKey: "AIzaSyCdtLr53pjpSvOwOfoskZRh6Yr7Y5sNU70",
+  authDomain: "habitual-b4c8e.firebaseapp.com",
+  projectId: "habitual-b4c8e",
+  storageBucket: "habitual-b4c8e.appspot.com",
+  messagingSenderId: "433764087571",
+  appId: "1:433764087571:web:8e8da2de2ea975ef760ce6"
+})
+
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+
+
 function App() {
+  const [user] = useAuthState(auth);
+
   return (
     <div className="App">
-      Check your habits here
+      <header className="App-header">
+      Habitual
+      <SignOut user={auth.currentUser} action={() => auth.signOut()}/> 
+      </header>
+
+      <section>
+        {user ? <HabitList /> : <SignIn signed={() => signInWithGoogle()}/>}
+      </section>
+
+      <div>
+      </div>
+
     </div>
   );
 }
+
+
+// function SignOut(){
+//   return auth.currentUser && (
+//     <button onClick={() => auth.signOut()}>Sign Out</button>
+//   )
+// }
+
+
+const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider);
+} 
+
 
 export default App;
