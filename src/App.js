@@ -26,6 +26,10 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
+const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider);
+} 
 
 function App() {
   const [user] = useAuthState(auth);
@@ -49,17 +53,6 @@ function App() {
 }
 
 
-// function SignOut(){
-//   return auth.currentUser && (
-//     <button onClick={() => auth.signOut()}>Sign Out</button>
-//   )
-// }
-
-
-const signInWithGoogle = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider);
-} 
 
 
 export default App;
