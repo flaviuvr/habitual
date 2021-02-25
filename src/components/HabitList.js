@@ -1,9 +1,28 @@
-import React from 'react';
+// import React from 'react';
+// import firebase from 'firebase/app';
 
-function HabitList() {
-    return (
-      <button>Add a new habit.</button>
-    );
-}
+// import 'firebase/firestore';
+// import { useCollectionData } from 'react-firebase-hooks/firestore';
+// const firestore = firebase.firestore();
 
-export default HabitList;
+
+// function HabitList() {
+//     return (
+//         <div>
+//         <form>
+//             <input 
+//                 className=""
+//                 type="text"
+//                 onChange=""
+//             />
+//         <button>Add a new habit.</button>
+//         </form>
+
+//         <div>
+//             Here are all of your habits:
+//         </div>
+//         </div>
+//     );
+// }
+
+// export default HabitList;
