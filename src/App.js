@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 
-import HabitList from './components/HabitList.js';
+//import HabitList from './components/HabitList.js';
 import SignIn from './components/SignIn.js';
 import SignOut from './components/SignOut.js';
 
@@ -33,7 +33,7 @@ const signInWithGoogle = () => {
 
 function App() {
   const [user] = useAuthState(auth);
-
+  console.log(user);
   return (
     <div className="App">
       <header className="App-header">
@@ -52,7 +52,25 @@ function App() {
   );
 }
 
+function HabitList() {
+  const habitsRef = firestore.collection('habits');
 
+  return (
+      <div>
+      <form>
+          <input 
+              className=""
+              type="text"
+          />
+      <button>Add a new habit.</button>
+      </form>
+
+      <div>
+          Here are all of your habits:
+      </div>
+      </div>
+  );
+}
 
 
 export default App;

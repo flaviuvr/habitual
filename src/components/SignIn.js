@@ -5,6 +5,4 @@ function SignIn(props){
         <button onClick={ props.signed }>Sign in with Google</button> 
     );
 }
-  
-
 export default SignIn;
