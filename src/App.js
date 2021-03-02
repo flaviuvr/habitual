@@ -4,7 +4,7 @@ import './App.css';
 //import HabitList from './components/HabitList.js';
 import SignIn from './components/SignIn.js';
 import SignOut from './components/SignOut.js';
-
+import HabitList from './components/HabitList.js';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -24,7 +24,7 @@ firebase.initializeApp({
 })
 
 const auth = firebase.auth();
-const firestore = firebase.firestore();
+const db = firebase.firestore();
 
 const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -34,43 +34,48 @@ const signInWithGoogle = () => {
 function App() {
   const [user] = useAuthState(auth);
   console.log(user);
+  const habitsRef = db.collection('habits');
+
   return (
     <div className="App">
       <header className="App-header">
-      Habitual
-      <SignOut user={auth.currentUser} action={() => auth.signOut()}/> 
+        Habitual
+        <SignOut user={auth.currentUser} action={() => auth.signOut()} />
       </header>
 
       <section>
-        {user ? <HabitList /> : <SignIn signed={() => signInWithGoogle()}/>}
+        {user ? (
+          <div>
+          Hello, {auth.currentUser.displayName}
+          <HabitList user={auth.currentUser} habits={habitsRef}/>
+          </div>
+        ) : (
+          <SignIn action={() => signInWithGoogle()} />
+        )}
       </section>
-
-      <div>
-      </div>
-
     </div>
   );
 }
 
-function HabitList() {
-  const habitsRef = firestore.collection('habits');
+// function HabitList() {
+//   const habitsRef = firestore.collection('habits');
 
-  return (
-      <div>
-      <form>
-          <input 
-              className=""
-              type="text"
-          />
-      <button>Add a new habit.</button>
-      </form>
+//   return (
+//       <div>
+//       <form>
+//           <input 
+//               className=""
+//               type="text"
+//           />
+//       <button>Add a new habit.</button>
+//       </form>
 
-      <div>
-          Here are all of your habits:
-      </div>
-      </div>
-  );
-}
+//       <div>
+//           Here are all of your habits:
+//       </div>
+//       </div>
+//   );
+// }
 
 
 export default App;
