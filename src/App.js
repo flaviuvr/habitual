@@ -1,17 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import './App.css';
 
 //import HabitList from './components/HabitList.js';
 import SignIn from './components/SignIn.js';
 import SignOut from './components/SignOut.js';
-import HabitList from './components/HabitList.js';
+import HabitList from './components/HabitList';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useCollection, useCollectionData } from 'react-firebase-hooks/firestore';
 
 //initializes the registered app from firebase with the given config
 firebase.initializeApp({
@@ -26,15 +26,13 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-const signInWithGoogle = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider);
-} 
-
 function App() {
-  const [user] = useAuthState(auth);
-  console.log(user);
-  const habitsRef = db.collection('habits');
+  const [user, loading] = useAuthState(auth);
+  var userID = null;
+  
+  if(user && !loading) {
+    userID = user.uid;
+  }
 
   return (
     <div className="App">
@@ -44,38 +42,34 @@ function App() {
       </header>
 
       <section>
-        {user ? (
+        {user && !loading ? (
+
           <div>
-          Hello, {auth.currentUser.displayName}
-          <HabitList user={auth.currentUser} habits={habitsRef}/>
+          <HabitList user={user} uid={userID} db={db}/>
           </div>
         ) : (
-          <SignIn action={() => signInWithGoogle()} />
+          <SignIn auth={auth}/>
         )}
       </section>
     </div>
   );
 }
 
-// function HabitList() {
-//   const habitsRef = firestore.collection('habits');
 
-//   return (
-//       <div>
-//       <form>
-//           <input 
-//               className=""
-//               type="text"
-//           />
-//       <button>Add a new habit.</button>
-//       </form>
 
-//       <div>
-//           Here are all of your habits:
-//       </div>
-//       </div>
-//   );
-// }
+const removeUser = () => {
+
+}
+
+const removeHabit = () => {
+
+}
+
+const checkHabit = () => {
+
+}
+
+
 
 
 export default App;

@@ -1,11 +1,16 @@
 TODO:
 
-[] implement Google authentification
-[] create structures of components
-[] implement a list of existing habits
-[] add a checkbox and a label for each element in the list
-[] add a form that adds a habit into the list
-[] add a button to remove elements from the list
+[x] implement Google authentification
+[x] create structures of components
+[x] model the database structure
+[x] when a user logs in, create a user object in the database
+[x] add a checkbox and a label for each element in the list
+[x] add a button to remove elements from the list
+[x] add a form that adds a habit into the list
+[x] implement a list of existing habits
+[] implement removal of habits
+[] implement editing of habits
+[] implement updating the check on a habit
 [] update the list once a day
 [] add a progress page with results over time(will need a calendar of some sort)
 [] style everything usind tailwind CSS
