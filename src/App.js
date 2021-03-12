@@ -14,12 +14,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 //initializes the registered app from firebase with the given config
 firebase.initializeApp({
-  apiKey: "AIzaSyCdtLr53pjpSvOwOfoskZRh6Yr7Y5sNU70",
-  authDomain: "habitual-b4c8e.firebaseapp.com",
-  projectId: "habitual-b4c8e",
-  storageBucket: "habitual-b4c8e.appspot.com",
-  messagingSenderId: "433764087571",
-  appId: "1:433764087571:web:8e8da2de2ea975ef760ce6"
+  //firebase config
 })
 
 const auth = firebase.auth();
