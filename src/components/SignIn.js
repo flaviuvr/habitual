@@ -9,7 +9,10 @@ function SignIn(props){
     }
 
     return(
-        <button onClick={() =>signInWithGoogle() }>Sign in with Google</button> 
+        <button 
+        onClick={() =>signInWithGoogle() }
+        className="border border-green-500"
+        >Sign in with Google</button> 
     );
 }
 export default SignIn;

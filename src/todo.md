@@ -8,9 +8,8 @@ TODO:
 [x] add a button to remove elements from the list
 [x] add a form that adds a habit into the list
 [x] implement a list of existing habits
-[] implement removal of habits
-[] implement editing of habits
-[] implement updating the check on a habit
+[x] implement removal of habits
+[x] implement updating the check on a habit
 [] update the list once a day
 [] add a progress page with results over time(will need a calendar of some sort)
 [] style everything usind tailwind CSS

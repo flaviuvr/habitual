@@ -11,7 +11,6 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollection, useCollectionData } from 'react-firebase-hooks/firestore';
 
 //initializes the registered app from firebase with the given config
 firebase.initializeApp({
@@ -36,40 +35,31 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header font-serif text-7xl font-extrabold text-green-500">
         Habitual
-        <SignOut user={auth.currentUser} action={() => auth.signOut()} />
       </header>
+      <div className="font-semibold text-lg text-grey-700">
+        Smaller steps towards a better you.
+      </div>
 
       <section>
         {user && !loading ? (
-
           <div>
-          <HabitList user={user} uid={userID} db={db}/>
+          <HabitList 
+          
+          user={user} 
+          uid={userID} 
+          db={db}
+
+          />
           </div>
         ) : (
           <SignIn auth={auth}/>
         )}
       </section>
+      <SignOut user={auth.currentUser} action={() => auth.signOut()} />
     </div>
   );
 }
-
-
-
-const removeUser = () => {
-
-}
-
-const removeHabit = () => {
-
-}
-
-const checkHabit = () => {
-
-}
-
-
-
 
 export default App;
