@@ -62,6 +62,21 @@ function HabitList(props) {
     });
   };
 
+  const resetHabits = () => {
+    habits.forEach((habit) => {
+      const resetQuery = props.db.collection("habits").where("text", "==", habit.text)
+      var docID;
+
+      resetQuery.get().then((e) => {
+        console.log(e);
+        docID = e.docs[0].id;
+        console.log(docID);
+        props.db.collection("habits").doc(docID).update({ check: false });
+      });
+      console.log(habit.text);
+    })
+  }
+
   return (
     <div>
       <div className="habits">
@@ -85,12 +100,13 @@ function HabitList(props) {
       </div>
 
       <form>
-        <input type="text" value={label} onChange={updateLabel} />
-        <input type="text" value={text} onChange={updateText} />
+        <input className="border border-green-500 pd" type="text" value={label} onChange={updateLabel} />
+        <input className="border border-green-500" type="text" value={text} onChange={updateText} />
         <button type="button" onClick={() => addHabit(props.uid, label, text)}>
           Add a new habit
         </button>
       </form>
+      <button type="button" onClick={() => resetHabits()}>Reset all habits</button>
     </div>
   );
 }

@@ -4,7 +4,8 @@ import './App.css';
 //import HabitList from './components/HabitList.js';
 import SignIn from './components/SignIn.js';
 import SignOut from './components/SignOut.js';
-import HabitList from './components/HabitList';
+import HabitList from './components/HabitList.js';
+import FirebaseConfig from './FirebaseConfig.js';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -13,9 +14,7 @@ import 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 //initializes the registered app from firebase with the given config
-firebase.initializeApp({
-  //firebase config
-})
+firebase.initializeApp(FirebaseConfig())
 
 const auth = firebase.auth();
 const db = firebase.firestore();
